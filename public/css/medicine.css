@@ -1,0 +1,23 @@
+.search_m{
+    background-image: url(/img/1.jpg);
+    margin-top: -20px;
+    padding: 60px 0px;
+}
+
+button[type="submit"]{
+    margin-top: 0px;
+    height: 50px;
+    width: 130px;
+}
+
+input[name="search"]{
+    height: 50px;
+    font-size: 16px;
+}
+
+.table>tbody>tr>td{
+    color: #272727;
+}
+.table>tbody>tr>td.title{
+    color: #65AAF0;
+}

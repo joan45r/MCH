@@ -1,4 +1,5 @@
 @extends('layout')
+<title>MCH-Health</title>
 
 @section('content')
 

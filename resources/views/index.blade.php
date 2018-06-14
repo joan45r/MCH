@@ -1,4 +1,5 @@
 @extends('layout')
+<link href="css/index.css" rel="stylesheet" />	
 
 @section('content')
 
@@ -9,31 +10,37 @@
 		</div>
 		<div class="container">		
 			<div class="col-md-4">
+				<a href="/medicine">
 				<figure class="effect-marley">
-					<img src="img/8.jpg" alt="/medicine" class="img-responsive"/>
+					<img src="img/12.jpg" alt="medicine" class="img-responsive"/>
 					<figcaption>
 						<h4>medicine</h4>
 						<p>藥品</p>				
-					</figcaption>			
+					</figcaption>		
 				</figure>
+				</a>
 			</div>
 			<div class="col-md-4">
+				<a href="/cosmetic">
 				<figure class="effect-marley">
-					<img src="img/9.jpg" alt="/cosmetic" class="img-responsive"/>
+					<img src="img/11.jpg" alt="cosmetic" class="img-responsive"/>
 					<figcaption>
 						<h4>cosmetic</h4>
 						<p>含藥化妝品</p>				
 					</figcaption>			
 				</figure>
+				</a>
 			</div>
 			<div class="col-md-4">
+				<a href="/health">
 				<figure class="effect-marley">
-					<img src="img/10.jpg" alt="/health" class="img-responsive"/>
+					<img src="img/10.jpg" alt="health" class="img-responsive"/>
 					<figcaption>
 						<h4>health food</h4>
 						<p>健康食品</p>				
 					</figcaption>			
 				</figure>
+				</a>
 			</div>
 		</div>
     </div>

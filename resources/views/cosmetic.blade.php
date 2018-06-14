@@ -1,4 +1,5 @@
 @extends('layout')
+<title>MCH-Cosmetic</title>
 
 @section('content')
 
