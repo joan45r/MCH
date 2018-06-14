@@ -15,9 +15,19 @@ class BladeController extends Controller
         return View('index');
     }
 
-    public function about()
+    public function medicine()
     {
-        return View('about');
+        return View('medicine');
+    }
+
+    public function cosmetic()
+    {
+        return View('cosmetic');
+    }
+
+    public function health()
+    {
+        return View('health');
     }
 
     public function work()

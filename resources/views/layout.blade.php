@@ -32,15 +32,15 @@
                         <span class="icon-bar"></span>
                     </button>
                    <div class="navbar-brand">
-						<a href="index.html"><h1>MCH</h1></a>
+						<a href="/"><h1>MCH</h1></a>
 					</div>
                 </div>				
                 <div class="navbar-collapse collapse">							
 					<div class="menu">
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation"><a href="index.html" class="active">Medicine</a></li>
-							<li role="presentation"><a href="about.html">Cosmetic</a></li>
-							<li role="presentation"><a href="services.html">Health Food</a></li>				
+							<li role="presentation"><a href="/medicine">Medicine</a></li>
+							<li role="presentation"><a href="/cosmetic">Cosmetic</a></li>
+							<li role="presentation"><a href="/health">Health Food</a></li>				
 						</ul>
 					</div>
 				</div>		
