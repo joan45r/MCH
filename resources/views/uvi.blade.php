@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="search_m">
+	<div class="search_u">
     <div class="container">
 		<div class="text-center">
 			<h2>UVI</h2>
@@ -13,7 +13,7 @@
 			<form class="contact-form" action="" method="GET">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="form-group">
-						<input type="text" name="uvi_area" class="form-control" required="required" placeholder="地名名稱，例如：台中">						
+						<input type="text" name="uvi_area" class="form-control" required="required" placeholder="地名名稱，例如：臺中">						
 					</div>
 				</div>
 				<div class="row">
@@ -51,8 +51,13 @@
 		</div>
 	</div>
 	<hr> -->
-	<div class="detail_m container">
+	<div class="detail_u container">
 		<div class="row text-center">
+		@if(count($focus['ingrds'])==0)
+			<div class="col-md-12">
+				<h5>查無此地區資料</h5>
+			</div>
+		@else
 		@foreach( $focus['ingrds'] as $index => $ingrd)
 			<div class="col-md-6">
 				<h3>{{ $ingrd['county'] }}</h3>
@@ -93,8 +98,15 @@
 				</div>
 			</div>
 		@endforeach
+		@endif
 		</div>
-		
+	</div>
+	<hr>
+	<div class="suggest_u container">
+		<div class="row text-center">
+			<h4>紫外線指數分級</h4>
+
+		</div>
 	</div>
     
 @stop

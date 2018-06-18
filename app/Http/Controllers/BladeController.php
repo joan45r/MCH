@@ -43,7 +43,7 @@ class BladeController extends Controller
             foreach($ingrds as $ingrd) 
                 // dd((string)$ingrd->County);
                 {
-                if ($ingrd['county']!="" && preg_match('/'.$area.'/i', (string)$ingrd->County)) {
+                if ((string)$ingrd->County!="" && preg_match('/'.$area.'/i', (string)$ingrd->County) || preg_match('/'.$area.'/i', (string)$ingrd->SiteName)) {
                     $ingrds_data[$i]['county'] = (string)$ingrd->County;
                     $ingrds_data[$i]['agency'] = (string)$ingrd->PublishAgency;
                     $ingrds_data[$i]['site'] = (string)$ingrd->SiteName;
@@ -55,31 +55,27 @@ class BladeController extends Controller
                     $i++;
                     // dd($ingrds_data);
                 }
-            } else {
-                foreach($ingrds as $ingrd) 
-                    // dd((string)$ingrd->County);
-                    {
-                    if ($ingrd['county']!=""{
-                        $ingrds_data[$i]['county'] = (string)$ingrd->County;
-                        $ingrds_data[$i]['agency'] = (string)$ingrd->PublishAgency;
-                        $ingrds_data[$i]['site'] = (string)$ingrd->SiteName;
-                        $ingrds_data[$i]['time'] = (string)$ingrd->PublishTime;
-                        $ingrds_data[$i]['uv'] = (string)$ingrd->UVI;
-                        $ingrds_data[$i]['lat'] = (string)$ingrd->WGS84Lat;
-                        $ingrds_data[$i]['lon'] = (string)$ingrd->WGS84Lon;
+            }
+        } else {
+            foreach($ingrds as $ingrd)
+                {
+                if ($ingrd['county']!="") {
+                    $ingrds_data[$i]['county'] = (string)$ingrd->County;
+                    $ingrds_data[$i]['agency'] = (string)$ingrd->PublishAgency;
+                    $ingrds_data[$i]['site'] = (string)$ingrd->SiteName;
+                    $ingrds_data[$i]['time'] = (string)$ingrd->PublishTime;
+                    $ingrds_data[$i]['uv'] = (string)$ingrd->UVI;
+                    $ingrds_data[$i]['lat'] = (string)$ingrd->WGS84Lat;
+                    $ingrds_data[$i]['lon'] = (string)$ingrd->WGS84Lon;
 
-                        $i++;
-                        // dd($ingrds_data);
-                    }
+                    $i++;
                 }
             }
-        }
-        
         }
 
         $focus['ingrds'] = $ingrds_data;
         // dd($focus);
-        return View::make('uvi',['focus' => $focus]);
+        return View::make('uvi', ['focus' => $focus]);
         
         
 
