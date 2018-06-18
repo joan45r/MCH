@@ -16,6 +16,6 @@
 // });
 
 Route::get('/', 'BladeController@index');
-Route::get('/medicine', 'BladeController@medicine');
+Route::get('/uvi', 'BladeController@uvi');
 Route::get('/cosmetic', 'BladeController@cosmetic');
 Route::get('/health', 'BladeController@health');

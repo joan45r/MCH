@@ -5,17 +5,17 @@
 
     <div class="gallery">
 		<div class="text-center">
-			<h2>藥妝也要健康</h2>
-			<p>本網站提供使用者查詢含藥化妝品、藥品的成分，<br/>以及健康食品的保健功效及注意事項，幫助民眾更了解日常所使用的產品，<br/>可以使用的更加安心，同時也可以當作選購產品的輔助建議。</p>
+			<h2>Weather Helper</h2>
+			<p>本網站提供使用者查詢紫外線及天氣警報之資訊，方便一次了解天氣警訊。</p>
 		</div>
 		<div class="container">		
 			<div class="col-md-4">
-				<a href="/medicine">
+				<a href="/uvi">
 				<figure class="effect-marley">
 					<img src="img/12.jpg" alt="medicine" class="img-responsive"/>
 					<figcaption>
-						<h4>medicine</h4>
-						<p>藥品</p>				
+						<h4>UVI</h4>
+						<p>各地紫外線指數</p>				
 					</figcaption>		
 				</figure>
 				</a>

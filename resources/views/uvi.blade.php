@@ -1,6 +1,6 @@
 @extends('layout')
 <title>WH-UVI</title>
-<link href="css/medicine.css" rel="stylesheet">
+<link href="css/uvi.css" rel="stylesheet">
 
 @section('content')
 
@@ -8,12 +8,12 @@
     <div class="container">
 		<div class="text-center">
 			<h2>UVI</h2>
-			<p>輸入想搜尋紫外線的地址</p>
+			<p>輸入想搜尋紫外線的地區</p>
 			<div class="row">
-			<form class="contact-form" action="">
+			<form class="contact-form" action="" method="POST">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="form-group">
-						<input type="text" name="search" class="form-control" required="required" placeholder="地名名稱，例如：台中">						
+						<input type="text" name="uvi_area" class="form-control" required="required" placeholder="地名名稱，例如：台中">						
 					</div>
 				</div>
 				<div class="row">
@@ -29,7 +29,7 @@
 	</div>
 	</div>
 	<hr>
-	<div class="result_m container">
+	<!-- <div class="result_m container">
 		<div class="row text-center">
 			<div class="col-md-8 col-md-offset-2">
 				<h3>搜尋結果</h3>
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 	</div>
-	<hr>
+	<hr> -->
 	<div class="detail_m container">
 		<div class="row text-center">
 		@foreach( $focus['ingrds'] as $index => $ingrd)

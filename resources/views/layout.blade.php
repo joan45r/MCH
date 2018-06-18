@@ -33,13 +33,13 @@
                         <span class="icon-bar"></span>
                     </button>
                    <div class="navbar-brand">
-						<a href="/"><h1>MCH</h1></a>
+						<a href="/"><h1>WH</h1></a>
 					</div>
                 </div>				
                 <div class="navbar-collapse collapse">							
 					<div class="menu">
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation"><a href="/medicine" class="{{ $focus['m'] }}">Medicine</a></li>
+							<li role="presentation"><a href="/uvi" class="{{ $focus['m'] }}">UVI</a></li>
 							<li role="presentation"><a href="/cosmetic" class="{{ $focus['c'] }}">Cosmetic</a></li>
 							<li role="presentation"><a href="/health" class="{{ $focus['h'] }}">Health Food</a></li>				
 						</ul>
@@ -67,7 +67,7 @@
 		<div class="container">
 			<div class="col-md-12 text-center">
 				<div class="copyright mt-0">
-					&copy; MCH 2018 by <a target="_blank" href="" title="">Jyun</a><i class="fa fa-crow fa"></i>. All Rights Reserved.
+					&copy; WH 2018 by <a target="_blank" href="" title="">Jyun</a><i class="fa fa-crow fa"></i>. All Rights Reserved.
 				</div>
                 <!-- 
                     All links in the footer should remain intact. 

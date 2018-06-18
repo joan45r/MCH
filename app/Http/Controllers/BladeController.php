@@ -21,7 +21,7 @@ class BladeController extends Controller
         return View::make('index',['focus' => $focus]);        
     }
 
-    public function medicine()
+    public function uvi()
     {
         $focus = array();
         $focus['m'] = 'active';
@@ -53,7 +53,7 @@ class BladeController extends Controller
 
         $focus['ingrds'] = $ingrds_data;
         // dd($focus);
-        return View::make('medicine',['focus' => $focus]);
+        return View::make('uvi',['focus' => $focus]);
         
         
 
