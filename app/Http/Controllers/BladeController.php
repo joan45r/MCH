@@ -12,182 +12,110 @@ class BladeController extends Controller
 {
     public function index()
     {
-        return View('index');
+        $focus = array();
+        $focus['m'] = '';
+        $focus['c'] = '';
+        $focus['h'] = '';
+        
+        // return View('index');
+        return View::make('index',['focus' => $focus]);        
     }
 
     public function medicine()
     {
-        return View('medicine');
+        $focus = array();
+        $focus['m'] = 'active';
+        $focus['c'] = '';
+        $focus['h'] = '';
+
+        $xml = XmlParser::load('http://opendata2.epa.gov.tw/UV/UV.xml');
+        $ingrds = $xml->getContent();
+        // dd($ingrds);
+        $ingrds_data = array();
+        $i = 0;
+        foreach($ingrds as $ingrd) 
+            // dd((string)$ingrd->County);
+            {
+            if ((string)$ingrd->County!="") {
+                $ingrds_data[$i]['county'] = (string)$ingrd->County;
+                $ingrds_data[$i]['agency'] = (string)$ingrd->PublishAgency;
+                $ingrds_data[$i]['site'] = (string)$ingrd->SiteName;
+                $ingrds_data[$i]['time'] = (string)$ingrd->PublishTime;
+                $ingrds_data[$i]['uv'] = (string)$ingrd->UVI;
+                $ingrds_data[$i]['lat'] = (string)$ingrd->WGS84Lat;
+                $ingrds_data[$i]['lon'] = (string)$ingrd->WGS84Lon;
+
+                $i++;
+                // dd($ingrds_data);
+            }
+            
+        }
+
+        $focus['ingrds'] = $ingrds_data;
+        // dd($focus);
+        return View::make('medicine',['focus' => $focus]);
+        
+        
+
+        // $med = $xml->parse([
+        //     '中文品名' => ['uses' => 'med.cName'],
+        //     '英文品名' => ['uses' => 'med.eName'],
+        //     '適應症' => ['uses' => 'med.indication'],
+        //     '劑型' => ['uses' => 'med.dosage'],
+        //     '包裝' => ['uses' => 'med.pack'],
+        //     '藥品類別' => ['uses' => 'med.mType'],
+        //     '主成分略述' => ['uses' => 'med.mainIngrd'],
+        //     '許可證字號' => ['uses' => 'med.license'],
+        //     '有效日期' => ['uses' => 'med.vDate'],
+        //     '發證日期' => ['uses' => 'med.eDate'],
+        //     '製造商名稱' => ['uses' => 'med.mfName'],
+        //     '製造廠國別' => ['uses' => 'med.mfCountry'],
+        // ]);
+        
+
+        // return View('medicine');
     }
 
     public function cosmetic()
     {
-        return View('cosmetic');
+        $focus = array();
+        $focus['m'] = '';
+        $focus['c'] = 'active';
+        $focus['h'] = '';
+
+        // https://data.gov.tw/dataset/9245 災害性天氣特報資料
+        $xml = XmlParser::load('http://opendata.cwb.gov.tw/govdownload?dataid=W-C0033-002&authorizationkey=rdec-key-123-45678-011121314');
+        $ingrds = $xml->getContent();
+        // dd($ingrds);
+        $ingrds_data = array();
+        $i = 0;
+        foreach($ingrds->dataset as $ingrd) 
+            // dd((string)$ingrd->datasetInfo->datasetDescription);
+            {
+            if ((string)$ingrd->datasetInfo->datasetDescription!="") {
+                $ingrds_data[$i]['description'] = (string)$ingrd->datasetInfo->datasetDescription;
+                $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
+                $ingrds_data[$i]['sTime'] = (string)$ingrd->datasetInfo->validTime->startTime;
+                $ingrds_data[$i]['eTime'] = (string)$ingrd->datasetInfo->validTime->endTime;
+                $ingrds_data[$i]['content'] = (string)$ingrd->contents->content->contentText;
+
+                $i++;
+                // dd($ingrds_data);
+            }
+        }
+        $focus['ingrds'] = $ingrds_data;
+        // dd($focus);
+        // return View('cosmetic');
+        return View::make('cosmetic',['focus' => $focus]);
     }
 
     public function health()
     {
-        return View('health');
-    }
-
-    public function work()
-    {
-        $keyword = $_GET['keyword'];
-        $data = array();
-
-        if ($keyword === 'bookstore') {
-            $data['title'] = '獨立書店';
-            $data['e_title'] = 'Independent Bookstore';
-            $data['introduce'] = '有沒有一本書多年前讀過，多年後的某個瞬間又突然想起？<br>每本書在不同年紀看都能看到不同的樣貌，到書店找尋那本可以陪伴你多年的書吧！';
-        
-            $xml = XmlParser::load('https://cloud.culture.tw/frontsite/trans/emapOpenDataAction.do?method=exportEmapXML&typeId=M');
-            $infos = $xml->getContent();
-
-            $infos_data = array();
-            $i = 0;
-            foreach($infos as $info) {
-                if ($info['representImage']!="") {
-                    $infos_data[$i]['name'] = (string)$info['name'];
-                    $infos_data[$i]['representImage'] = (string)$info['representImage'];
-                    $infos_data[$i]['cityName'] = (string)$info['cityName'];
-
-                    $i++;
-                }
-            }
-
-        } elseif ($keyword === 'library') {
-            $data['title'] = '特色圖書館';
-            $data['e_title'] = 'Featured Library';
-            $data['introduce'] = '圖書館不單單只是保存書籍的地方，那裡也有著我們的青春回憶<br>學生時期，那些一起到圖書館報到、一起夜讀的日子，你還記得嗎？';
-        
-            $xml = XmlParser::load('https://cloud.culture.tw/frontsite/trans/emapOpenDataAction.do?method=exportEmapXML&typeId=K');
-            $infos = $xml->getContent();
-            
-            $infos_data = array();
-            $i = 0;
-            foreach($infos as $info) {
-                if ($info['representImage']!="") {
-                    $infos_data[$i]['name'] = (string)$info['name'];
-                    $infos_data[$i]['representImage'] = (string)$info['representImage'];
-                    $infos_data[$i]['cityName'] = (string)$info['cityName'];
-
-                    $i++;
-                }
-            }
-
-        } elseif ($keyword === 'course') {
-            $data['title'] = '文化部研習課程';
-            $data['e_title'] = 'Ministry of Culture Study Course';
-            $data['introduce'] = '看著別人多才多藝，是否有些羨慕？<br>快來看看文化部有舉辦哪些課程吧';
-        
-            $xml = XmlParser::load('http://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeX&category=19');
-            $infos = $xml->getContent();
-            
-            $infos_data = array();
-            $i = 0;
-            foreach($infos as $info) {
-                if ($info['imageUrl']!="") {
-                    $infos_data[$i]['name'] = (string)$info['title'];
-                    $infos_data[$i]['representImage'] = (string)$info['imageUrl'];
-                    $infos_data[$i]['cityName'] = (string)$info->showInfo->element['locationName'];
-
-                    $i++;
-                }
-            }
-
-        } elseif ($keyword === 'space') {
-            $data['title'] = '展演空間';
-            $data['e_title'] = 'Exhibition Space';
-            $data['introduce'] = '喜歡看別人做的文青小物嗎？<br>到各個展覽空間去走走吧，說不定會有不一樣的新收穫喔';
-        
-            $xml = XmlParser::load('https://cloud.culture.tw/frontsite/trans/emapOpenDataAction.do?method=exportEmapXMLByMainType&mainType=10');
-            $infos = $xml->getContent();
-            
-            $infos_data = array();
-            $i = 0;
-            foreach($infos as $info) {
-                if ($info['representImage']!="") {
-                    $infos_data[$i]['name'] = (string)$info['name'];
-                    $infos_data[$i]['representImage'] = (string)$info['representImage'];
-                    $infos_data[$i]['cityName'] = (string)$info['cityName'];
-
-                    $i++;
-                }
-            }
-
-        } elseif ($keyword === 'exhibition') {
-            $data['title'] = '展演資訊';
-            $data['e_title'] = 'Exhibition Information';
-            $data['introduce'] = '看看別人做的展覽，試著用他的角度去看世界<br>你會發現這個世界變得不同，用眼去看用心體會';
-        
-            $xml = XmlParser::load('https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeX&category=6');
-            $infos = $xml->getContent();
-
-            $infos_data = array();
-            $i = 0;
-            foreach($infos as $info) {
-                if ($info['imageUrl']!="") {
-                    $infos_data[$i]['name'] = (string)$info['title'];
-                    $infos_data[$i]['representImage'] = (string)$info['imageUrl'];
-                    $infos_data[$i]['cityName'] = (string)$info->showInfo->element['locationName'];
-
-                    $i++;
-                }
-            }
-            
-        } elseif ($keyword === 'music') {
-            $data['title'] = '獨立音樂';
-            $data['e_title'] = 'Independent Music';
-            $data['introduce'] = '是否常在音樂的歌詞或旋律裡找自己的身影<br>在創作表演者的詮釋下，或許會發現類似的經歷與不同的選擇';
-        
-            $xml = XmlParser::load('https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeX&category=5');
-            $infos = $xml->getContent();
-
-            $infos_data = array();
-            $i = 0;
-            foreach($infos as $info) {
-                if ($info['imageUrl']!="") {
-                    $infos_data[$i]['name'] = (string)$info['title'];
-                    $infos_data[$i]['representImage'] = (string)$info['imageUrl'];
-                    $infos_data[$i]['cityName'] = (string)$info->showInfo->element['locationName'];
-
-                    $i++;
-                }
-            }
-
-        } elseif ($keyword === 'performance') {
-            $data['title'] = '音樂表演資訊';
-            $data['e_title'] = 'Musical performance information';
-            $data['introduce'] = '有別於一般的人聲流行音樂<br>純音樂的饗宴，用最純淨的聲音，帶給你最震撼的感動';
-        
-            $xml = XmlParser::load('https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeX&category=1');
-            $infos = $xml->getContent();
-
-            $infos_data = array();
-            $i = 0;
-            foreach($infos as $info) {
-                if ($info['imageUrl']!="") {
-                    $infos_data[$i]['name'] = (string)$info['title'];
-                    $infos_data[$i]['representImage'] = (string)$info['imageUrl'];
-                    $infos_data[$i]['cityName'] = (string)$info->showInfo->element['locationName'];
-
-                    $i++;
-                }
-            }
-        }
-        
-        $data['infos'] = $infos_data;
-        
-        return View::make('work',['data' => $data]);
-    }
-
-    public function portfolio_detail()
-    {
-        return View('portfolio_detail');
-    }
-    
-    public function contact()
-    {
-        return View('contact');
+        $focus = array();
+        $focus['m'] = '';
+        $focus['c'] = '';
+        $focus['h'] = 'active';       
+        // return View('health');
+        return View::make('health',['focus' => $focus]);
     }
 }

@@ -2,69 +2,23 @@
 <title>MCH-Cosmetic</title>
 
 @section('content')
-
+	
     <div class="gallery">
 		<div class="text-center">
-			<h2>Cosmetic</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat quod voluptate consequuntur ad quasi, dolores obcaecati ex aliquid, dolor provident </p>
+			<h2>災害性天氣特報資料</h2>
+			<p>天氣特報-各別天氣警特報之內容及所影響之區域</p>
 		</div>
-		<div class="container">		
-			<div class="col-md-4">
-				<figure class="effect-marley">
-					<img src="img/8.jpg" alt="" class="img-responsive"/>
-					<figcaption>
-						<h4>sweet marley</h4>
-						<p>Marley tried to convince her but she was not interested.</p>				
-					</figcaption>			
-				</figure>
-			</div>
-			<div class="col-md-4">
-				<figure class="effect-marley">
-					<img src="img/9.jpg" alt="" class="img-responsive"/>
-					<figcaption>
-						<h4>sweet marley</h4>
-						<p>Marley tried to convince her but she was not interested.</p>				
-					</figcaption>			
-				</figure>
-			</div>
-			<div class="col-md-4">
-				<figure class="effect-marley">
-					<img src="img/10.jpg" alt="" class="img-responsive"/>
-					<figcaption>
-						<h4>sweet marley</h4>
-						<p>Marley tried to convince her but she was not interested.</p>				
-					</figcaption>			
-				</figure>
-			</div>
-		</div>
-		
 		<div class="container">
-			<div class="col-md-4">
-				<figure class="effect-marley">
-					<img src="img/11.jpg" alt="" class="img-responsive"/>
-					<figcaption>
-						<h4>sweet marley</h4>
-						<p>Marley tried to convince her but she was not interested.</p>				
-					</figcaption>			
-				</figure>
-			</div>
-			<div class="col-md-4">
-				<figure class="effect-marley">
-					<img src="img/12.jpg" alt="" class="img-responsive"/>
-					<figcaption>
-						<h4>sweet marley</h4>
-						<p>Marley tried to convince her but she was not interested.</p>				
-					</figcaption>			
-				</figure>
-			</div>
-			<div class="col-md-4">
-				<figure class="effect-marley">
-					<img src="img/13.jpg" alt="" class="img-responsive"/>
-					<figcaption>
-						<h4>sweet marley</h4>
-						<p>Marley tried to convince her but she was not interested.</p>				
-					</figcaption>			
-				</figure>
+			<div class="row">
+			@foreach( $focus['ingrds'] as $index => $ingrd)
+				<div class="col-md-12">
+					<h3>{{ $ingrd['description'] }}</h3>
+					<p>發布日期：{{ $ingrd['issueTime'] }}</p>
+					<p>開始時間：{{ $ingrd['sTime'] }}</p>
+					<p>結束時間：{{ $ingrd['eTime'] }}</p>
+					<p>{{ $ingrd['content'] }}</p>					
+				</div>
+			@endforeach
 			</div>
 		</div>
     </div>

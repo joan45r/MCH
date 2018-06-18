@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>MCH</title>
+    <title>WH</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,9 +39,9 @@
                 <div class="navbar-collapse collapse">							
 					<div class="menu">
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation"><a href="/medicine">Medicine</a></li>
-							<li role="presentation"><a href="/cosmetic">Cosmetic</a></li>
-							<li role="presentation"><a href="/health">Health Food</a></li>				
+							<li role="presentation"><a href="/medicine" class="{{ $focus['m'] }}">Medicine</a></li>
+							<li role="presentation"><a href="/cosmetic" class="{{ $focus['c'] }}">Cosmetic</a></li>
+							<li role="presentation"><a href="/health" class="{{ $focus['h'] }}">Health Food</a></li>				
 						</ul>
 					</div>
 				</div>		

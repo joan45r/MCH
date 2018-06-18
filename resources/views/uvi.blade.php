@@ -1,5 +1,5 @@
 @extends('layout')
-<title>MCH-Medicine</title>
+<title>WH-UVI</title>
 <link href="css/medicine.css" rel="stylesheet">
 
 @section('content')
@@ -7,13 +7,13 @@
 	<div class="search_m">
     <div class="container">
 		<div class="text-center">
-			<h2>Medicine</h2>
-			<p>輸入西藥藥品的名稱，以搜尋處方成分資料</p>
+			<h2>UVI</h2>
+			<p>輸入想搜尋紫外線的地址</p>
 			<div class="row">
 			<form class="contact-form" action="">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="form-group">
-						<input type="text" name="search" class="form-control" required="required" placeholder="藥品名稱，例如：舒壓朗錠">						
+						<input type="text" name="search" class="form-control" required="required" placeholder="地名名稱，例如：台中">						
 					</div>
 				</div>
 				<div class="row">
@@ -53,52 +53,46 @@
 	<hr>
 	<div class="detail_m container">
 		<div class="row text-center">
+		@foreach( $focus['ingrds'] as $index => $ingrd)
 			<div class="col-md-6">
-				<h3>藥品名稱</h3>
-				<h4>中文名稱</h4>
-				<p>English name</p>
+				<h3>{{ $ingrd['county'] }}</h3>
+				<!-- <h4>{{ $ingrd['site'] }}</h4> -->
+				<p>發布日期：{{ $ingrd['time'] }}</p>
 			</div>
 			<div class="col-md-6">
-				<h3>成分列表</h3>
+				<!-- <h3>詳細資訊</h3> -->
 				<div class="panel panel-default">
 				<!-- Default panel contents -->
-				<div class="panel-heading">藥品詳細處方成分資料</div>
+				<div class="panel-heading">詳細資料</div>
 
 				<!-- Table -->
 				<table class="table">
 					<tbody>
 					<tr>
-						<td class="title">許可證字號</td>
-						<td>200000000</td>
+						<td class="title">紫外線指數</td>
+						<td>{{ $ingrd['uv'] }}</td>
 					</tr>
 					<tr>
-						<td class="title">處方標示</td>
-						<td>XXXXXXXXXXX</td>
+						<td class="title">測站名稱</td>
+						<td>{{ $ingrd['site'] }}</td>
 					</tr>
 					<tr>
-						<td class="title">成分名稱</td>
-						<td>XXXXXXXXXXX</td>
+						<td class="title">發布機關</td>
+						<td>{{ $ingrd['agency'] }}</td>
 					</tr>
 					<tr>
-						<td class="title">成分代碼</td>
-						<td>XXXXXXXXXXX</td>
+						<td class="title">經度 WGS84</td>
+						<td>{{ $ingrd['lon'] }}</td>
 					</tr>
 					<tr>
-						<td class="title">含量描述</td>
-						<td>XXXXXXXXXXX</td>
-					</tr>
-					<tr>
-						<td class="title">含量</td>
-						<td>XXXXXXXXXXX</td>
-					</tr>
-					<tr>
-						<td class="title">含量單位</td>
-						<td>XXXXXXXXXXX</td>
+						<td class="title">緯度 WGS84</td>
+						<td>{{ $ingrd['lat'] }}</td>
 					</tr>
 					</tbody>					
 				</table>
 				</div>
 			</div>
+		@endforeach
 		</div>
 		
 	</div>
