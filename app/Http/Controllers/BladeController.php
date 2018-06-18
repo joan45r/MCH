@@ -28,27 +28,53 @@ class BladeController extends Controller
         $focus['c'] = '';
         $focus['h'] = '';
 
+        $area="";
+
+        if (isset($_GET['uvi_area'])) {
+            $area = $_GET['uvi_area'];
+        }
+
         $xml = XmlParser::load('http://opendata2.epa.gov.tw/UV/UV.xml');
         $ingrds = $xml->getContent();
         // dd($ingrds);
         $ingrds_data = array();
         $i = 0;
-        foreach($ingrds as $ingrd) 
-            // dd((string)$ingrd->County);
-            {
-            if ((string)$ingrd->County!="") {
-                $ingrds_data[$i]['county'] = (string)$ingrd->County;
-                $ingrds_data[$i]['agency'] = (string)$ingrd->PublishAgency;
-                $ingrds_data[$i]['site'] = (string)$ingrd->SiteName;
-                $ingrds_data[$i]['time'] = (string)$ingrd->PublishTime;
-                $ingrds_data[$i]['uv'] = (string)$ingrd->UVI;
-                $ingrds_data[$i]['lat'] = (string)$ingrd->WGS84Lat;
-                $ingrds_data[$i]['lon'] = (string)$ingrd->WGS84Lon;
+        if ($area!=""){
+            foreach($ingrds as $ingrd) 
+                // dd((string)$ingrd->County);
+                {
+                if ($ingrd['county']!="" && preg_match('/'.$area.'/i', (string)$ingrd->County)) {
+                    $ingrds_data[$i]['county'] = (string)$ingrd->County;
+                    $ingrds_data[$i]['agency'] = (string)$ingrd->PublishAgency;
+                    $ingrds_data[$i]['site'] = (string)$ingrd->SiteName;
+                    $ingrds_data[$i]['time'] = (string)$ingrd->PublishTime;
+                    $ingrds_data[$i]['uv'] = (string)$ingrd->UVI;
+                    $ingrds_data[$i]['lat'] = (string)$ingrd->WGS84Lat;
+                    $ingrds_data[$i]['lon'] = (string)$ingrd->WGS84Lon;
 
-                $i++;
-                // dd($ingrds_data);
+                    $i++;
+                    // dd($ingrds_data);
+                }
+            } else {
+                foreach($ingrds as $ingrd) 
+                    // dd((string)$ingrd->County);
+                    {
+                    if ($ingrd['county']!=""{
+                        $ingrds_data[$i]['county'] = (string)$ingrd->County;
+                        $ingrds_data[$i]['agency'] = (string)$ingrd->PublishAgency;
+                        $ingrds_data[$i]['site'] = (string)$ingrd->SiteName;
+                        $ingrds_data[$i]['time'] = (string)$ingrd->PublishTime;
+                        $ingrds_data[$i]['uv'] = (string)$ingrd->UVI;
+                        $ingrds_data[$i]['lat'] = (string)$ingrd->WGS84Lat;
+                        $ingrds_data[$i]['lon'] = (string)$ingrd->WGS84Lon;
+
+                        $i++;
+                        // dd($ingrds_data);
+                    }
+                }
             }
-            
+        }
+        
         }
 
         $focus['ingrds'] = $ingrds_data;

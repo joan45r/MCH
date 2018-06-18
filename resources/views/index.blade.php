@@ -12,10 +12,10 @@
 			<div class="col-md-4">
 				<a href="/uvi">
 				<figure class="effect-marley">
-					<img src="img/12.jpg" alt="medicine" class="img-responsive"/>
+					<img src="img/12.jpg" alt="uvi" class="img-responsive"/>
 					<figcaption>
 						<h4>UVI</h4>
-						<p>各地紫外線指數</p>				
+						<p>各地紫外線指數</p>
 					</figcaption>		
 				</figure>
 				</a>

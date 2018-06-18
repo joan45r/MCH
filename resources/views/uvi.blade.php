@@ -10,7 +10,7 @@
 			<h2>UVI</h2>
 			<p>輸入想搜尋紫外線的地區</p>
 			<div class="row">
-			<form class="contact-form" action="" method="POST">
+			<form class="contact-form" action="" method="GET">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="form-group">
 						<input type="text" name="uvi_area" class="form-control" required="required" placeholder="地名名稱，例如：台中">						
@@ -19,7 +19,7 @@
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4">
 						<div class="form-group">
-							<button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Search</button>						
+							<button type="submit" name="submit" class="btn btn-primary btn-lg">Search</button>						
 						</div>
 					</div>
 				</div>
