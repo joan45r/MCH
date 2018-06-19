@@ -56,7 +56,7 @@
 			<div class="col-md-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">				
 				<div class="">
 					<h4>Source Reference</h4>
-					<p>本網站的產品成分資料來源，皆取自於<a target="_blank" href="https://data.fda.gov.tw/frontsite/index/indexAction.do?method=index" title="食品藥品開放資平台">FDA</a>。</p>
+					<p>本網站的天氣資料來源，取自於<a target="_blank" href="https://data.gov.tw/dataset/6076" title="">DATA.GOV.TW</a>。</p>
                 </div>
 			</div>
 			

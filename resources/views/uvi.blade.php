@@ -28,85 +28,183 @@
 		</div>
 	</div>
 	</div>
-	<hr>
-	<!-- <div class="result_m container">
-		<div class="row text-center">
-			<div class="col-md-8 col-md-offset-2">
-				<h3>搜尋結果</h3>
-				<table class="table">
-					<tr>
-						<td>結果1-中文品名</td>
-						<td>結果1-英文品名</td>
-					</tr>
-					<tr>
-						<td>結果2-中文品名</td>
-						<td>結果2-英文品名</td>
-					</tr>
-					<tr>
-						<td>結果3-中文品名</td>
-						<td>結果3-英文品名</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
-	<hr> -->
 	<div class="detail_u container">
 		<div class="row text-center">
-		@if(count($focus['ingrds'])==0)
+		@if($focus['first']=='0')
+		<div class="suggest_u container">
+			<div class="row text-center">
+				<div class="col-md-12"><hr></div>
+				<div class="col-md-12">
+					<!-- <h4>紫外線指數分級</h4> -->
+					<div class="panel panel-default">
+					<!-- Default panel contents -->
+					<div class="panel-heading">紫外線指數分級</div>
+
+					<!-- Table -->
+					<table class="table">
+						<thead>
+							<tr>
+								<th>指數</th>
+								<th>曝曬級數</th>
+								<th>曬傷時間</th>
+								<th>建議的防護措施</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="txt-green">0 - 2</td>
+								<td class="bg-green">微量級</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="txt-yellow">3 - 5</td>
+								<td class="bg-yellow">低量級</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td class="txt-orange">6 - 7</td>
+								<td class="bg-orange">中量級</td>
+								<td>30分鐘內</td>
+								<td>帽子/陽傘 + 防曬液 + 太陽眼鏡 + 儘量待在陰涼處。</td>
+							</tr>
+							<tr>
+								<td class="txt-red">8 - 10</td>
+								<td class="bg-red">過量級</td>
+								<td>20分鐘內</td>
+								<td>帽子/陽傘 + 防曬液 + 太陽眼鏡 + 陰涼處 + 長袖衣物，上午十時至下午二時最好不外出。</td>
+							</tr>
+							<tr>
+								<td class="txt-purple">11+</td>
+								<td class="bg-purple">危險級</td>
+								<td>15分鐘內</td>
+								<td>帽子/陽傘 + 防曬液 + 太陽眼鏡 + 陰涼處 + 長袖衣物，上午十時至下午二時最好不外出。</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		@else
+			@if(count($focus['ingrds'])==0)
 			<div class="col-md-12">
 				<h5>查無此地區資料</h5>
 			</div>
-		@else
-		@foreach( $focus['ingrds'] as $index => $ingrd)
-			<div class="col-md-6">
-				<h3>{{ $ingrd['county'] }}</h3>
-				<!-- <h4>{{ $ingrd['site'] }}</h4> -->
-				<p>發布日期：{{ $ingrd['time'] }}</p>
-			</div>
-			<div class="col-md-6">
-				<!-- <h3>詳細資訊</h3> -->
-				<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">詳細資料</div>
+			@else
+				@foreach( $focus['ingrds'] as $index => $ingrd)
+				<!-- <div class="row"> -->
+					<div class="col-md-12"><hr></div>
+					<div class="col-md-8 text-center">
+						<h3>{{ $ingrd['county'] }}</h3>
+						<p>發布日期：{{ $ingrd['time'] }}</p>
+					</div>
+					<div class="col-md-4">
 
-				<!-- Table -->
-				<table class="table">
-					<tbody>
-					<tr>
-						<td class="title">紫外線指數</td>
-						<td>{{ $ingrd['uv'] }}</td>
-					</tr>
-					<tr>
-						<td class="title">測站名稱</td>
-						<td>{{ $ingrd['site'] }}</td>
-					</tr>
-					<tr>
-						<td class="title">發布機關</td>
-						<td>{{ $ingrd['agency'] }}</td>
-					</tr>
-					<tr>
-						<td class="title">經度 WGS84</td>
-						<td>{{ $ingrd['lon'] }}</td>
-					</tr>
-					<tr>
-						<td class="title">緯度 WGS84</td>
-						<td>{{ $ingrd['lat'] }}</td>
-					</tr>
-					</tbody>					
-				</table>
+					</div>
 				</div>
-			</div>
-		@endforeach
+				<div class="row">
+					<div class="col-md-8">
+						
+						<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-heading">詳細資料</div>
+						<!-- Table -->
+						<table class="table">
+							<tbody>
+							<tr>
+								<td class="title">紫外線指數</td>
+								<td>{{ $ingrd['uv'] }}</td>
+							</tr>
+							<tr>
+								<td class="title">測站名稱</td>
+								<td>{{ $ingrd['site'] }}</td>
+							</tr>
+							<tr>
+								<td class="title">發布機關</td>
+								<td>{{ $ingrd['agency'] }}</td>
+							</tr>
+							<tr>
+								<td class="title">經度 WGS84</td>
+								<td>{{ $ingrd['lon'] }}</td>
+							</tr>
+							<tr>
+								<td class="title">緯度 WGS84</td>
+								<td>{{ $ingrd['lat'] }}</td>
+							</tr>
+							</tbody>					
+						</table>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+						<!-- Default panel contents -->
+						<div class="panel-heading">紫外線指數分級</div>
+						<!-- Table -->
+						<table class="table">
+							<tbody>
+								@if($ingrd['uv']<=2)
+								<tr>
+									<td class="title">指數</td>
+									<td class="txt-green">0 - 2</td>
+								</tr>
+								<tr>
+									<td class="title">曝曬級數</td>
+									<td class="bg-green">微量級</td>
+								</tr>
+								<tr>
+									<td class="title">曬傷時間</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="title">建議的防護措施</td>
+									<td></td>
+								</tr>
+								
+								@elseif($ingrd['uv']<=5)
+								<tr>
+									<td class="title">指數</td>
+									<td class="txt-yellow">3 - 5</td>
+								</tr>
+								<tr>
+									<td class="title">曝曬級數</td>
+									<td class="bg-yellow">低量級</td>
+								</tr>
+								<tr>
+									<td class="title">曬傷時間</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="title">建議的防護措施</td>
+									<td></td>
+								</tr>
+								@elseif($ingrd['uv']<=7)
+								<td class="txt-orange">6 - 7</td>
+								<td class="bg-orange">中量級</td>
+								<td>30分鐘內</td>
+								<td>帽子/陽傘+防曬液+太陽眼鏡+儘量待在陰涼處。</td>
+								@elseif($ingrd['uv']<=10)
+								<td class="txt-red">8 - 10</td>
+								<td class="bg-red">過量級</td>
+								<td>20分鐘內</td>
+								<td>帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物，上午十時至下午二時最好不外出。</td>
+								@elseif($ingrd['uv']>=11)
+								<td class="txt-purple">11+</td>
+								<td class="bg-purple">危險級</td>
+								<td>15分鐘內</td>
+								<td>帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物，上午十時至下午二時最好不外出。</td>
+								@endif
+							</tbody>
+						</table>
+						</div>
+					</div>
+				<!-- </div> -->
+				@endforeach
+			@endif
 		@endif
 		</div>
 	</div>
-	<hr>
-	<div class="suggest_u container">
-		<div class="row text-center">
-			<h4>紫外線指數分級</h4>
-
-		</div>
-	</div>
+	
     
 @stop

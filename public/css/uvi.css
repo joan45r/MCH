@@ -1,8 +1,8 @@
 .search_u{
     background-image: url('/img/12_banner.jpg');
-    /* background-repeat: no-repeat; */
-    /* background-size: cover;
-    background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: center; */
     margin-top: -20px;
     padding: 60px 0px;
 }
@@ -17,10 +17,53 @@ input[name="search"]{
     height: 50px;
     font-size: 16px;
 }
-
+.table>thead>tr>th{
+    color: #272727;
+}
 .table>tbody>tr>td{
     color: #272727;
 }
-.table>tbody>tr>td.title{
+.table>tbody>tr>td.title,.table>tbody>tr>th.title{
     color: #65AAF0;
+}
+
+.table>tbody>tr>td.txt-green{
+    color: #00b200;
+    font-weight: bold;
+}
+.table>tbody>tr>td.bg-green{
+    background-color: #00b200;
+    color: #FFFFFF;
+}
+.table>tbody>tr>td.txt-yellow{
+    color: #ffce00;
+    font-weight: bold;
+}
+.table>tbody>tr>td.bg-yellow{
+    background-color: #ffce00;
+    color: #FFFFFF;
+}
+.table>tbody>tr>td.txt-orange{
+    color: #ff7c00;
+    font-weight: bold;
+}
+.table>tbody>tr>td.bg-orange{
+    background-color: #ff7c00;
+    color: #FFFFFF;
+}
+.table>tbody>tr>td.txt-red{
+    color: #e10000;
+    font-weight: bold;
+}
+.table>tbody>tr>td.bg-red{
+    background-color: #e10000;
+    color: #FFFFFF;
+}
+.table>tbody>tr>td.txt-purple{
+    color: #940099;
+    font-weight: bold;
+}
+.table>tbody>tr>td.bg-purple{
+    background-color: #940099;
+    color: #FFFFFF;
 }

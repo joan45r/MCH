@@ -28,10 +28,13 @@ class BladeController extends Controller
         $focus['c'] = '';
         $focus['h'] = '';
 
+        $focus['first']='0';
+
         $area="";
 
         if (isset($_GET['uvi_area'])) {
             $area = $_GET['uvi_area'];
+            $focus['first']='1';
         }
 
         $xml = XmlParser::load('http://opendata2.epa.gov.tw/UV/UV.xml');
