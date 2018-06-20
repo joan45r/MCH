@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,7 +41,7 @@
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation"><a href="/uvi" class="{{ $focus['m'] }}">UVI</a></li>
 							<li role="presentation"><a href="/unusual" class="{{ $focus['c'] }}">Unusual</a></li>
-							<li role="presentation"><a href="/health" class="{{ $focus['h'] }}">Health Food</a></li>				
+							<li role="presentation"><a href="/forecast" class="{{ $focus['h'] }}">Forecast</a></li>				
 						</ul>
 					</div>
 				</div>		

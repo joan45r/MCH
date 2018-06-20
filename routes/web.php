@@ -18,4 +18,4 @@
 Route::get('/', 'BladeController@index');
 Route::get('/uvi', 'BladeController@uvi');
 Route::get('/unusual', 'BladeController@unusual');
-Route::get('/health', 'BladeController@health');
+Route::get('/forecast', 'BladeController@forecast');

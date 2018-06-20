@@ -32,12 +32,12 @@
 				</a>
 			</div>
 			<div class="col-md-4">
-				<a href="/health">
+				<a href="/forecast">
 				<figure class="effect-marley">
-					<img src="img/10.jpg" alt="health" class="img-responsive"/>
+					<img src="img/10.jpg" alt="forecast" class="img-responsive"/>
 					<figcaption>
-						<h4>health food</h4>
-						<p>健康食品</p>				
+						<h4>forecast</h4>
+						<p>天氣預報</p>				
 					</figcaption>			
 				</figure>
 				</a>

@@ -79,26 +79,6 @@ class BladeController extends Controller
         $focus['ingrds'] = $ingrds_data;
         // dd($focus);
         return View::make('uvi', ['focus' => $focus]);
-        
-        
-
-        // $med = $xml->parse([
-        //     '中文品名' => ['uses' => 'med.cName'],
-        //     '英文品名' => ['uses' => 'med.eName'],
-        //     '適應症' => ['uses' => 'med.indication'],
-        //     '劑型' => ['uses' => 'med.dosage'],
-        //     '包裝' => ['uses' => 'med.pack'],
-        //     '藥品類別' => ['uses' => 'med.mType'],
-        //     '主成分略述' => ['uses' => 'med.mainIngrd'],
-        //     '許可證字號' => ['uses' => 'med.license'],
-        //     '有效日期' => ['uses' => 'med.vDate'],
-        //     '發證日期' => ['uses' => 'med.eDate'],
-        //     '製造商名稱' => ['uses' => 'med.mfName'],
-        //     '製造廠國別' => ['uses' => 'med.mfCountry'],
-        // ]);
-        
-
-        // return View('medicine');
     }
 
     public function unusual()
