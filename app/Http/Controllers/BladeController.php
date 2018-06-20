@@ -136,7 +136,68 @@ class BladeController extends Controller
         $focus = array();
         $focus['m'] = '';
         $focus['c'] = '';
-        $focus['h'] = 'active';       
+        $focus['h'] = 'active';
+        
+        $focus['first']='0';
+
+        $area="";
+
+        if (isset($_GET['uvi_area'])) {
+            $area = $_GET['uvi_area'];
+            $focus['first']='1';
+        }
+
+        // 天氣預報資料
+        $xml = XmlParser::load('http://opendata.cwb.gov.tw/govdownload?dataid=F-C0032-001&authorizationkey=rdec-key-123-45678-011121314');
+        $ingrds = $xml->getContent();
+        // dd($ingrds);
+        $ingrds_data = array();
+        $i = 0; $j = 0; $l = 0; $t = 0;
+        
+        foreach($ingrds->dataset as $ingrd) 
+            // dd((string)$ingrd->datasetInfo->datasetDescription);
+            {
+            if ((string)$ingrd->datasetInfo->issueTime!="") {
+                $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
+                $ingrds_data[$i]['update'] = (string)$ingrd->datasetInfo->update;
+                
+                foreach($ingrd->location as $infos) 
+                {
+                    if ((string)$infos->locationName!="") {
+                        $ingrds_data[$i]['location'][$j]['locationName'] = (string)$infos->locationName;
+                        foreach($infos->weatherElement as $infos2)
+                        {
+                            if((string)$infos2->elementName!=""){
+                                $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['elementName'] = (string)$infos2->elementName;
+                                foreach($infos2->time as $infos3)
+                                {
+                                    if((string)$infos3->startTime!=""){
+                                        $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['startTime'] = (string)$infos3->startTime;
+                                        $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['endTime'] = (string)$infos3->endTime;
+                                        foreach($infos3->parameter as $infos4)
+                                        {
+                                            if((string)$infos4->parameterName!=""){
+                                                $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['parameter'] = (string)$infos4->parameterName;
+                                            }
+                                        }
+                                        $t++;
+                                    }
+                                }
+                                $l++;
+                            }
+                        }
+                        
+                        $l=0;
+                        $j++;
+                    }
+                }
+                $i++;
+                // dd($ingrds_data);
+            }
+        }
+        $focus['ingrds'] = $ingrds_data;
+        dd($focus);
+
         // return View('forecast');
         return View::make('forecast',['focus' => $focus]);
     }

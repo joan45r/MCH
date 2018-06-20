@@ -58,7 +58,6 @@
 					<p>此頁面的天氣警特報資料來源，取自於<a target="_blank" href="https://data.gov.tw/dataset/9245" title="">DATA.GOV.TW</a>。</p>
                 </div>
 			</div>
-			
 		</div>	
 	</footer>
     

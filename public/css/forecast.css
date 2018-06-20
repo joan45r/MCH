@@ -1,0 +1,27 @@
+.frc-header{
+    background-image: url('/img/10_banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: -20px;
+    padding: 100px 0px;
+}
+.search_f{
+    background-image: url('/img/10_banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+    margin-top: -20px;
+    padding: 60px 0px;
+}
+
+button[type="submit"]{
+    margin-top: 0px;
+    height: 50px;
+    width: 130px;
+}
+
+input[name="search"]{
+    height: 50px;
+    font-size: 16px;
+}
