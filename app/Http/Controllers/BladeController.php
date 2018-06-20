@@ -101,7 +101,7 @@ class BladeController extends Controller
         // return View('medicine');
     }
 
-    public function cosmetic()
+    public function unusual()
     {
         $focus = array();
         $focus['m'] = '';
@@ -113,7 +113,8 @@ class BladeController extends Controller
         $ingrds = $xml->getContent();
         // dd($ingrds);
         $ingrds_data = array();
-        $i = 0;
+        $i = 0; $j = 0; $l = 0;
+        
         foreach($ingrds->dataset as $ingrd) 
             // dd((string)$ingrd->datasetInfo->datasetDescription);
             {
@@ -123,24 +124,40 @@ class BladeController extends Controller
                 $ingrds_data[$i]['sTime'] = (string)$ingrd->datasetInfo->validTime->startTime;
                 $ingrds_data[$i]['eTime'] = (string)$ingrd->datasetInfo->validTime->endTime;
                 $ingrds_data[$i]['content'] = (string)$ingrd->contents->content->contentText;
-
+                
+                foreach($ingrd->hazardConditions->hazards->hazard as $infos) 
+                {
+                    if ((string)$infos->info->phenomena!="") {  
+                                          
+                        $ingrds_data[$i]['phenomenas'][$j]['phenomena'] = (string)$infos->info->phenomena;
+                        foreach($infos->info->affectedAreas->location as $infos2)
+                        {
+                            if((string)$infos2->locationName!=""){
+                                $ingrds_data[$i]['phenomenas'][$j]['affectedAreas'][$l] = (string)$infos2->locationName;
+                                $l++;
+                            }
+                        }
+                        $l=0;
+                        $j++;
+                    }
+                }
                 $i++;
                 // dd($ingrds_data);
             }
         }
         $focus['ingrds'] = $ingrds_data;
         // dd($focus);
-        // return View('cosmetic');
-        return View::make('cosmetic',['focus' => $focus]);
+        return View::make('unusual',['focus' => $focus]);
+        
     }
 
-    public function health()
+    public function forecast()
     {
         $focus = array();
         $focus['m'] = '';
         $focus['c'] = '';
         $focus['h'] = 'active';       
-        // return View('health');
-        return View::make('health',['focus' => $focus]);
+        // return View('forecast');
+        return View::make('forecast',['focus' => $focus]);
     }
 }

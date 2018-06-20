@@ -1,5 +1,5 @@
 @extends('layout')
-<title>WH-UVI</title>
+<title>天氣U&amp;U-UVI</title>
 <link href="css/uvi.css" rel="stylesheet">
 
 @section('content')
@@ -8,7 +8,7 @@
     <div class="container">
 		<div class="text-center">
 			<h2>UVI</h2>
-			<p>輸入想搜尋紫外線的地區</p>
+			<p class="txt-white">輸入想搜尋紫外線的地區</p>
 			<div class="row">
 			<form class="contact-form" action="" method="GET">
 				<div class="col-md-8 col-md-offset-2">
@@ -90,7 +90,9 @@
 		@else
 			@if(count($focus['ingrds'])==0)
 			<div class="col-md-12">
+				<hr>
 				<h5>查無此地區資料</h5>
+				<hr>
 			</div>
 			@else
 				@foreach( $focus['ingrds'] as $index => $ingrd)
@@ -140,7 +142,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-default">
 						<!-- Default panel contents -->
-						<div class="panel-heading">紫外線指數分級</div>
+						<div class="panel-heading">紫外線指數分級對照表</div>
 						<!-- Table -->
 						<table class="table">
 							<tbody>
@@ -205,6 +207,15 @@
 		@endif
 		</div>
 	</div>
-	
+	<footer>
+		<div class="container">
+			<div class="col-md-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">				
+				<div class="">
+					<h4>Source Reference</h4>
+					<p>本頁面的UVI天氣資料來源，取自於<a target="_blank" href="https://data.gov.tw/dataset/6076" title="">DATA.GOV.TW</a>。</p>
+                </div>
+			</div>
+		</div>	
+	</footer>
     
 @stop

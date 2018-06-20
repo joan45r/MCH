@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>WH</title>
+    <title>天氣U&amp;U</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,14 +33,14 @@
                         <span class="icon-bar"></span>
                     </button>
                    <div class="navbar-brand">
-						<a href="/"><h1>WH</h1></a>
+						<a href="/"><h1>天氣 U&amp;U</h1></a>
 					</div>
                 </div>				
                 <div class="navbar-collapse collapse">							
 					<div class="menu">
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation"><a href="/uvi" class="{{ $focus['m'] }}">UVI</a></li>
-							<li role="presentation"><a href="/cosmetic" class="{{ $focus['c'] }}">Cosmetic</a></li>
+							<li role="presentation"><a href="/unusual" class="{{ $focus['c'] }}">Unusual</a></li>
 							<li role="presentation"><a href="/health" class="{{ $focus['h'] }}">Health Food</a></li>				
 						</ul>
 					</div>
@@ -50,18 +50,6 @@
     </header><!--/header-->	
 	
 	@yield('content')
-		
-	<footer>
-		<div class="container">
-			<div class="col-md-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">				
-				<div class="">
-					<h4>Source Reference</h4>
-					<p>本網站的天氣資料來源，取自於<a target="_blank" href="https://data.gov.tw/dataset/6076" title="">DATA.GOV.TW</a>。</p>
-                </div>
-			</div>
-			
-		</div>	
-	</footer>
 	
 	<div class="sub-footer">
 		<div class="container">

@@ -1,0 +1,30 @@
+.uns-header{
+    background-image: url('/img/11_banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: -20px;
+    padding: 100px 0px;
+}
+.table>thead>tr>th, .table>tbody>tr>td{
+    color: #272727;
+}
+.table>tbody>tr>td.title, .table>tbody>tr>th.title{
+    color: #65AAF0;
+}
+b.title{
+    color: #65AAF0 !important;
+}
+
+p.description{
+    color: #272727;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+.left-line{
+    border-left: 3px solid #e2e2e2;
+}
+.mb-20{
+    margin-bottom: 20px;
+}

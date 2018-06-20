@@ -5,8 +5,8 @@
 
     <div class="gallery">
 		<div class="text-center">
-			<h2>Weather Helper</h2>
-			<p>本網站提供使用者查詢紫外線及天氣警報之資訊，方便一次了解天氣警訊。</p>
+			<h2>天氣 UVI&amp;Unusual</h2>
+			<p>本網站提供使用者查詢紫外線及天氣警特報之資訊，方便一次了解天氣警訊。</p>
 		</div>
 		<div class="container">		
 			<div class="col-md-4">
@@ -21,12 +21,12 @@
 				</a>
 			</div>
 			<div class="col-md-4">
-				<a href="/cosmetic">
+				<a href="/unusual">
 				<figure class="effect-marley">
-					<img src="img/11.jpg" alt="cosmetic" class="img-responsive"/>
+					<img src="img/11.jpg" alt="unusual" class="img-responsive"/>
 					<figcaption>
-						<h4>cosmetic</h4>
-						<p>含藥化妝品</p>				
+						<h4>Unusual</h4>
+						<p>災害性天氣特報</p>				
 					</figcaption>			
 				</figure>
 				</a>

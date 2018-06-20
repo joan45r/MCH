@@ -17,5 +17,5 @@
 
 Route::get('/', 'BladeController@index');
 Route::get('/uvi', 'BladeController@uvi');
-Route::get('/cosmetic', 'BladeController@cosmetic');
+Route::get('/unusual', 'BladeController@unusual');
 Route::get('/health', 'BladeController@health');
