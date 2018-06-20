@@ -2,3 +2,11 @@ figure.effect-marley p{
     font-size: 20px;
     bottom: 20px !important;
 }
+
+.intro>h1{
+    color: #272727 !important;
+}
+.intro>p{
+    /* font-size: 14px; */
+    margin-top: 40px;
+}

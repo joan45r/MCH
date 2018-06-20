@@ -33,6 +33,7 @@
 		<div class="col-md-12">
 			<hr>
 			<h5>請輸入欲搜尋之地區</h5>
+			<hr>
 		</div>
 		@else
 			@if(count($focus['ingrds'])==0)
@@ -42,9 +43,21 @@
 				<hr>
 			</div>
 			@else
-				@foreach( $focus['ingrds'] as $index => $ingrd)
-				<div class="col-md-12"><hr></div>
-				<div class="col-md-12 text-center">{{  }}</div>
+				@foreach($focus['ingrds'] as $index => $ingrd)
+				<div class="col-md-12 text-center"><p class="mt-10">更新時間：{{ $ingrd['update'] }}</p></div>
+					@foreach($ingrd['location'] as $ingrd2)
+					<div class="col-md-12"><hr></div>
+					<div class="col-md-12 text-center">
+						<h3>{{ $ingrd2['locationName'] }}</h3>
+						@foreach($ingrd2['weatherElement'] as $index => $ingrd3)
+							@foreach($ingrd3[0=>['time']] as $index => $ingrd4)
+							<div class="col-md-4">
+								{{ $ingrd4['startTime'] }} 123至 {{ $ingrd4['endTime'] }}
+							</div>
+							@endforeach
+						@endforeach
+					</div>
+					@endforeach
 				@endforeach
 			@endif
 		@endif

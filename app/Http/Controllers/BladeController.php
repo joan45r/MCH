@@ -100,9 +100,9 @@ class BladeController extends Controller
             {
             if ((string)$ingrd->datasetInfo->datasetDescription!="") {
                 $ingrds_data[$i]['description'] = (string)$ingrd->datasetInfo->datasetDescription;
-                $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
-                $ingrds_data[$i]['sTime'] = (string)$ingrd->datasetInfo->validTime->startTime;
-                $ingrds_data[$i]['eTime'] = (string)$ingrd->datasetInfo->validTime->endTime;
+                $ingrds_data[$i]['issueTime'] = substr((string)$ingrd->datasetInfo->issueTime, 0, 10)."　".substr((string)$ingrd->datasetInfo->issueTime, 11, 8);
+                $ingrds_data[$i]['sTime'] = substr((string)$ingrd->datasetInfo->validTime->startTime, 0, 10)."　".substr((string)$ingrd->datasetInfo->validTime->startTime, 11 ,8);
+                $ingrds_data[$i]['eTime'] = substr((string)$ingrd->datasetInfo->validTime->endTime, 0 ,10)."　".substr((string)$ingrd->datasetInfo->validTime->endTime, 11, 8);
                 $ingrds_data[$i]['content'] = (string)$ingrd->contents->content->contentText;
                 
                 foreach($ingrd->hazardConditions->hazards->hazard as $infos) 
@@ -154,49 +154,94 @@ class BladeController extends Controller
         $ingrds_data = array();
         $i = 0; $j = 0; $l = 0; $t = 0;
         
-        foreach($ingrds->dataset as $ingrd) 
+        if($area!=""){
+            foreach($ingrds->dataset as $ingrd) 
             // dd((string)$ingrd->datasetInfo->datasetDescription);
             {
-            if ((string)$ingrd->datasetInfo->issueTime!="") {
-                $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
-                $ingrds_data[$i]['update'] = (string)$ingrd->datasetInfo->update;
-                
-                foreach($ingrd->location as $infos) 
-                {
-                    if ((string)$infos->locationName!="") {
-                        $ingrds_data[$i]['location'][$j]['locationName'] = (string)$infos->locationName;
-                        foreach($infos->weatherElement as $infos2)
-                        {
-                            if((string)$infos2->elementName!=""){
-                                $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['elementName'] = (string)$infos2->elementName;
-                                foreach($infos2->time as $infos3)
-                                {
-                                    if((string)$infos3->startTime!=""){
-                                        $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['startTime'] = (string)$infos3->startTime;
-                                        $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['endTime'] = (string)$infos3->endTime;
-                                        foreach($infos3->parameter as $infos4)
-                                        {
-                                            if((string)$infos4->parameterName!=""){
-                                                $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['parameter'] = (string)$infos4->parameterName;
+                if ((string)$ingrd->datasetInfo->issueTime!="") {
+                    $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
+                    $ingrds_data[$i]['update'] = (string)$ingrd->datasetInfo->update;
+                    $ingrds_data[$i]['update'] = substr((string)$ingrd->datasetInfo->update, 0, 4)."/".substr((string)$ingrd->datasetInfo->update, 5, 2)."/".substr((string)$ingrd->datasetInfo->update, 8, 2)." ".substr((string)$ingrd->datasetInfo->update, 11, 5);;
+                    foreach($ingrd->location as $infos) 
+                    {
+                        if ((string)$infos->locationName!="" && preg_match('/'.$area.'/i', (string)$infos->locationName)) {
+                            $ingrds_data[$i]['location'][$j]['locationName'] = (string)$infos->locationName;
+                            foreach($infos->weatherElement as $infos2)
+                            {
+                                if((string)$infos2->elementName!=""){
+                                    $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['elementName'] = (string)$infos2->elementName;
+                                    foreach($infos2->time as $infos3)
+                                    {
+                                        if((string)$infos3->startTime!=""){
+                                            $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['startTime'] = substr((string)$infos3->startTime, 5, 2)."/".substr((string)$infos3->startTime, 8, 2)." ".substr((string)$infos3->startTime, 11, 5);
+                                            $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['endTime'] = substr((string)$infos3->endTime, 5, 2)."/".substr((string)$infos3->startTime, 8, 2)." ".substr((string)$infos3->endTime, 11, 5);
+                                            foreach($infos3->parameter as $infos4)
+                                            {
+                                                if((string)$infos4->parameterName!=""){
+                                                    $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['parameter'] = (string)$infos4->parameterName;
+                                                }
                                             }
+                                            $t++;
                                         }
-                                        $t++;
                                     }
+                                    $l++;
                                 }
-                                $l++;
                             }
+                            
+                            $l=0;
+                            $j++;
                         }
-                        
-                        $l=0;
-                        $j++;
                     }
+                    $i++;
+                    // dd($ingrds_data);
                 }
-                $i++;
-                // dd($ingrds_data);
+            }
+        } else {
+            foreach($ingrds->dataset as $ingrd) 
+            // dd((string)$ingrd->datasetInfo->datasetDescription);
+            {
+                if ((string)$ingrd->datasetInfo->issueTime!="") {
+                    $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
+                    $ingrds_data[$i]['update'] = (string)$ingrd->datasetInfo->update;
+                    
+                    foreach($ingrd->location as $infos) 
+                    {
+                        if ((string)$infos->locationName!="") {
+                            $ingrds_data[$i]['location'][$j]['locationName'] = (string)$infos->locationName;
+                            foreach($infos->weatherElement as $infos2)
+                            {
+                                if((string)$infos2->elementName!=""){
+                                    $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['elementName'] = (string)$infos2->elementName;
+                                    foreach($infos2->time as $infos3)
+                                    {
+                                        if((string)$infos3->startTime!=""){
+                                            $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['startTime'] = (string)$infos3->startTime;
+                                            $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['endTime'] = (string)$infos3->endTime;
+                                            foreach($infos3->parameter as $infos4)
+                                            {
+                                                if((string)$infos4->parameterName!=""){
+                                                    $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['parameter'] = (string)$infos4->parameterName;
+                                                }
+                                            }
+                                            $t++;
+                                        }
+                                    }
+                                    $t=0;
+                                    $l++;
+                                }
+                            }
+                            $l=0;
+                            $j++;
+                        }
+                    }
+                    $i++;
+                    // dd($ingrds_data);
+                }
             }
         }
+        
         $focus['ingrds'] = $ingrds_data;
-        dd($focus);
+        // dd($focus);
 
         // return View('forecast');
         return View::make('forecast',['focus' => $focus]);

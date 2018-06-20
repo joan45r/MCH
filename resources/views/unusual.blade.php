@@ -11,6 +11,13 @@
 		</div>
 	</div>
 	<div class="container">
+	@if(count($focus['ingrds'])==0)
+	<div class="row">
+		<div class="col-md-12">
+			<h2>目前無發布警特報</h2>
+		</div>
+	</div>
+	@else
 		<div class="row mb-20">
 		@foreach( $focus['ingrds'] as $index => $ingrd)
 			<hr>
@@ -48,7 +55,9 @@
 			@endforeach
 		@endforeach
 		</div>
+	@endif
 	</div>
+
 
     <footer>
 		<div class="container">

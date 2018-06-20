@@ -41,7 +41,7 @@
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation"><a href="/uvi" class="{{ $focus['m'] }}">UVI</a></li>
 							<li role="presentation"><a href="/unusual" class="{{ $focus['c'] }}">Unusual</a></li>
-							<li role="presentation"><a href="/forecast" class="{{ $focus['h'] }}">Forecast</a></li>				
+							<!-- <li role="presentation"><a href="/forecast" class="{{ $focus['h'] }}">Forecast</a></li>		 -->
 						</ul>
 					</div>
 				</div>		
