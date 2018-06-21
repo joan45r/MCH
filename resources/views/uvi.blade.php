@@ -182,20 +182,56 @@
 									<td></td>
 								</tr>
 								@elseif($ingrd['uv']<=7)
-								<td class="txt-orange">6 - 7</td>
-								<td class="bg-orange">中量級</td>
-								<td>30分鐘內</td>
-								<td>帽子/陽傘+防曬液+太陽眼鏡+儘量待在陰涼處。</td>
+								<tr>
+									<td class="title">指數</td>
+									<td class="txt-orange">6 - 7</td>
+								</tr>
+								<tr>
+									<td class="title">曝曬級數</td>
+									<td class="bg-orange">中量級</td>
+								</tr>
+								<tr>
+									<td class="title">曬傷時間</td>
+									<td>30分鐘內</td>
+								</tr>
+								<tr>
+									<td class="title">建議的防護措施</td>
+									<td>帽子/陽傘+防曬液+太陽眼鏡+儘量待在陰涼處。</td>
+								</tr>
 								@elseif($ingrd['uv']<=10)
-								<td class="txt-red">8 - 10</td>
-								<td class="bg-red">過量級</td>
-								<td>20分鐘內</td>
-								<td>帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物，上午十時至下午二時最好不外出。</td>
+								<tr>
+									<td class="title">指數</td>
+									<td class="txt-red">8 - 10</td>
+								</tr>
+								<tr>
+									<td class="title">曝曬級數</td>
+									<td class="bg-red">過量級</td>
+								</tr>
+								<tr>
+									<td class="title">曬傷時間</td>
+									<td>20分鐘內</td>
+								</tr>
+								<tr>
+									<td class="title">建議的防護措施</td>
+									<td>帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物，上午十時至下午二時最好不外出。</td>
+								</tr>
 								@elseif($ingrd['uv']>=11)
-								<td class="txt-purple">11+</td>
-								<td class="bg-purple">危險級</td>
-								<td>15分鐘內</td>
-								<td>帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物，上午十時至下午二時最好不外出。</td>
+								<tr>
+									<td class="title">指數</td>
+									<td class="txt-purple">11+</td>
+								</tr>
+								<tr>
+									<td class="title">曝曬級數</td>
+									<td class="bg-purple">危險級</td>
+								</tr>							
+								<tr>
+									<td class="title">曬傷時間</td>
+									<td>15分鐘內</td>
+								</tr>
+								<tr>
+									<td class="title">建議的防護措施</td>
+									<td>帽子/陽傘+防曬液+太陽眼鏡+陰涼處+長袖衣物，上午十時至下午二時最好不外出。</td>
+								</tr>
 								@endif
 							</tbody>
 						</table>

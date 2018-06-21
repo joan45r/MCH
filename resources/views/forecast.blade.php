@@ -52,7 +52,7 @@
 						@foreach($ingrd2['weatherElement'] as $index => $ingrd3)
 							@foreach($ingrd3[0=>['time']] as $index => $ingrd4)
 							<div class="col-md-4">
-								{{ $ingrd4['startTime'] }} 123至 {{ $ingrd4['endTime'] }}
+								{{ $ingrd4['startTime'] }} 至 {{ $ingrd4['endTime'] }}
 							</div>
 							@endforeach
 						@endforeach

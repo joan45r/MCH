@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/cloud.ico" type="image/x-icon" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>天氣U&amp;U</title>
 
@@ -33,7 +34,7 @@
                         <span class="icon-bar"></span>
                     </button>
                    <div class="navbar-brand">
-						<a href="/"><h1>天氣 U&amp;U</h1></a>
+						<a href="/"><img src="img/cloud-white.png" alt="" height=50 weight=50><h1 style="margin-right: 5px;">U&amp;U</h1></a>
 					</div>
                 </div>				
                 <div class="navbar-collapse collapse">							
@@ -55,7 +56,7 @@
 		<div class="container">
 			<div class="col-md-12 text-center">
 				<div class="copyright mt-0">
-					&copy; WH 2018 by <a target="_blank" href="" title="">Jyun</a><i class="fa fa-crow fa"></i>. All Rights Reserved.
+					&copy; 天氣U&amp;U 2018 by <a target="_blank" href="" title="">Jyun</a><i class="fa fa-crow fa"></i>. All Rights Reserved.
 				</div>
                 <!-- 
                     All links in the footer should remain intact. 

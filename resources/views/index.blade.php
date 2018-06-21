@@ -10,7 +10,7 @@
 		</div> -->
 		<div class="container">
 			<div class="col-md-4 intro">
-				<h1>天氣</h1><h1>UVI&amp;Unusual</h1>
+				<h1>天氣</h1><h1>UVI &amp; Unusual</h1>
 				<p>本網站提供使用者查詢紫外線及天氣警特報之資訊，<br>方便一次了解天氣警訊。</p>
 			</div>
 			<div class="col-md-4">

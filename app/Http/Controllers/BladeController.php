@@ -107,8 +107,7 @@ class BladeController extends Controller
                 
                 foreach($ingrd->hazardConditions->hazards->hazard as $infos) 
                 {
-                    if ((string)$infos->info->phenomena!="") {  
-                                          
+                    if ((string)$infos->info->phenomena!="") {
                         $ingrds_data[$i]['phenomenas'][$j]['phenomena'] = (string)$infos->info->phenomena;
                         foreach($infos->info->affectedAreas->location as $infos2)
                         {
@@ -119,6 +118,8 @@ class BladeController extends Controller
                         }
                         $l=0;
                         $j++;
+                    } else {
+                        $ingrds_data[$i]['phenomenas']['phenomena'] = null;
                     }
                 }
                 $i++;
@@ -152,48 +153,58 @@ class BladeController extends Controller
         $ingrds = $xml->getContent();
         // dd($ingrds);
         $ingrds_data = array();
+        $lc='';
         $i = 0; $j = 0; $l = 0; $t = 0;
         
         if($area!=""){
             foreach($ingrds->dataset as $ingrd) 
-            // dd((string)$ingrd->datasetInfo->datasetDescription);
             {
-                if ((string)$ingrd->datasetInfo->issueTime!="") {
-                    $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
-                    $ingrds_data[$i]['update'] = (string)$ingrd->datasetInfo->update;
-                    $ingrds_data[$i]['update'] = substr((string)$ingrd->datasetInfo->update, 0, 4)."/".substr((string)$ingrd->datasetInfo->update, 5, 2)."/".substr((string)$ingrd->datasetInfo->update, 8, 2)." ".substr((string)$ingrd->datasetInfo->update, 11, 5);;
-                    foreach($ingrd->location as $infos) 
-                    {
-                        if ((string)$infos->locationName!="" && preg_match('/'.$area.'/i', (string)$infos->locationName)) {
-                            $ingrds_data[$i]['location'][$j]['locationName'] = (string)$infos->locationName;
-                            foreach($infos->weatherElement as $infos2)
-                            {
-                                if((string)$infos2->elementName!=""){
-                                    $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['elementName'] = (string)$infos2->elementName;
-                                    foreach($infos2->time as $infos3)
-                                    {
-                                        if((string)$infos3->startTime!=""){
-                                            $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['startTime'] = substr((string)$infos3->startTime, 5, 2)."/".substr((string)$infos3->startTime, 8, 2)." ".substr((string)$infos3->startTime, 11, 5);
-                                            $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['endTime'] = substr((string)$infos3->endTime, 5, 2)."/".substr((string)$infos3->startTime, 8, 2)." ".substr((string)$infos3->endTime, 11, 5);
-                                            foreach($infos3->parameter as $infos4)
-                                            {
-                                                if((string)$infos4->parameterName!=""){
-                                                    $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['parameter'] = (string)$infos4->parameterName;
-                                                }
-                                            }
-                                            $t++;
-                                        }
-                                    }
-                                    $l++;
-                                }
-                            }
-                            
-                            $l=0;
-                            $j++;
-                        }
+                foreach($ingrd->location as $loca)
+                {
+                    if ((string)$loca->locationName!="" && preg_match('/'.$area.'/i', (string)$loca->locationName)) {
+                        $lc='have';
+                        break;
+                    } else {
+                        $lc='';
                     }
-                    $i++;
-                    // dd($ingrds_data);
+                }
+                if ($lc=='have') {
+                    if ((string)$ingrd->datasetInfo->issueTime!="") {
+                        $ingrds_data[$i]['issueTime'] = (string)$ingrd->datasetInfo->issueTime;
+                        $ingrds_data[$i]['update'] = (string)$ingrd->datasetInfo->update;
+                        $ingrds_data[$i]['update'] = substr((string)$ingrd->datasetInfo->update, 0, 4)."/".substr((string)$ingrd->datasetInfo->update, 5, 2)."/".substr((string)$ingrd->datasetInfo->update, 8, 2)." ".substr((string)$ingrd->datasetInfo->update, 11, 5);;
+                        foreach($ingrd->location as $infos) 
+                        {
+                            if ((string)$infos->locationName!="" && preg_match('/'.$area.'/i', (string)$infos->locationName)) {
+                                $ingrds_data[$i]['location'][$j]['locationName'] = (string)$infos->locationName;
+                                foreach($infos->weatherElement as $infos2)
+                                {
+                                    if((string)$infos2->elementName!=""){
+                                        $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['elementName'] = (string)$infos2->elementName;
+                                        foreach($infos2->time as $infos3)
+                                        {
+                                            if((string)$infos3->startTime!=""){
+                                                $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['startTime'] = substr((string)$infos3->startTime, 5, 2)."/".substr((string)$infos3->startTime, 8, 2)." ".substr((string)$infos3->startTime, 11, 5);
+                                                $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['endTime'] = substr((string)$infos3->endTime, 5, 2)."/".substr((string)$infos3->startTime, 8, 2)." ".substr((string)$infos3->endTime, 11, 5);
+                                                foreach($infos3->parameter as $infos4)
+                                                {
+                                                    if((string)$infos4->parameterName!=""){
+                                                        $ingrds_data[$i]['location'][$j]['weatherElement'][$l]['time'][$t]['parameter'] = (string)$infos4->parameterName;
+                                                    }
+                                                }
+                                                $t++;
+                                            }
+                                        }
+                                        $l++;
+                                    }
+                                }
+                                $l=0;
+                                $j++;
+                            }
+                        }
+                        $i++;
+                        // dd($ingrds_data);
+                    }
                 }
             }
         } else {

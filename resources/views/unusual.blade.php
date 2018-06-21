@@ -34,16 +34,17 @@
 			</div>
 		</div>
 		<div class="row">
+			@if($ingrd['phenomenas']!=0)
 			@foreach( $ingrd['phenomenas'] as $index => $info)
 			<div class="col-md-4">
 				<div class="panel panel-default">
-				<div class="panel-heading"><b class="title">{{ $info['phenomena'] }}</b> |區域</div>
+				<div class="panel-heading" style="text-size: 18px;"><b class="title">{{ $info['phenomena'] }}</b> |區域</div>
 				<table class="table">
 					<tr>
 						<!-- <td class="title">影響區域</td> -->
-						<td>
+						<td style="padding-left: 15px;">
 							@foreach( $info['affectedAreas'] as $index => $info2)
-							{{ $info2 }}&emsp;
+							{{ $info2 }} | 
 							@endforeach
 						</td>
 						
@@ -53,6 +54,8 @@
 				<p></p>
 			</div>
 			@endforeach
+			@else{ <hr> }
+			@endif
 		@endforeach
 		</div>
 	@endif
